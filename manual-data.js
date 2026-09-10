@@ -1,382 +1,216 @@
-window.OUKA_MANUAL = {
-  version: "1.0",
-  updated: "2026-09-09",
-  title: "桜香予約システム 操作マニュアル",
-  subtitle: "OUKA Reservation System",
-  intro: "予約対応・サイト編集・メール・LINE・画像作成・システム更新まで、普段使う操作をスマホからすぐ確認できます。",
-  quickLinks: [
-    { label: "予約サイトを開く", url: "https://oukaripo.com/reserve", tone: "primary" },
-    { label: "管理画面を開く", url: "https://admin.oukaripo.com/reserve", tone: "secondary" },
-    { label: "詳細管理を開く", url: "https://admin.oukaripo.com/reserve/detail", tone: "secondary" },
-    { label: "李白公式プロフィール", url: "https://www.ripo-chiba.com/cast/7060/", tone: "ghost" }
-  ],
-  categories: [
-    {
-      id: "reservation",
-      icon: "♡",
-      title: "予約・キャンセル",
-      description: "予約の流れ、締切、オンラインキャンセルについて",
-      sections: [
-        {
-          title: "空き状況の見方",
-          body: [
-            "予約枠は状態に応じて表示が変わります。",
-            "◎ / ○ / △：オンライン予約可能",
-            "📞：オンライン受付終了後、予約開始時刻までは電話予約可能",
-            "×：予約不可"
-          ]
-        },
-        {
-          title: "通常枠の締切",
-          body: [
-            "通常枠は『オンライン予約可能 → 📞 → ×』の順に切り替わります。",
-            "例：13:00枠・オンライン締切11:00の場合、11:00:59まではオンライン予約可能、11:01:00から📞、13:00:00から×になります。",
-            "予約フォームを締切前に開いていても、送信した時刻でサーバー側が再判定します。"
-          ]
-        },
-        {
-          title: "姫予約限定枠",
-          body: [
-            "姫予約限定枠は『予約可能 → ×』の2段階です。",
-            "例：前日18:00締切の場合、18:00:59まで予約可能、18:01:00から×になります。"
-          ]
-        },
-        {
-          title: "予約が入ったとき",
-          body: [
-            "お客様が予約を送信すると、管理画面へ予約が登録され、お客様への自動返信と管理者通知が行われます。",
-            "内容を確認したら、管理画面から予約を確定します。"
-          ]
-        },
-        {
-          title: "オンラインキャンセル",
-          body: [
-            "お客様は予約ごとの専用URLからオンラインキャンセルできます。",
-            "初期設定は『予約日の3日前 23:59まで』です。",
-            "例：9月10日の予約なら、9月7日23:59:59までオンラインキャンセル可能です。",
-            "予約メール内の『予約内容の確認・キャンセル』から手続きできます。"
-          ]
-        },
-        {
-          title: "キャンセル完了後",
-          body: [
-            "予約状態がキャンセルへ変更され、予約枠が再び空きへ戻ります。",
-            "キャンセル日時を記録し、お客様へ完了通知、管理者へキャンセル通知が送られます。",
-            "同じ予約を二重にキャンセルすることはできません。"
-          ]
-        }
-      ]
-    },
-    {
-      id: "admin",
-      icon: "◇",
-      title: "管理画面",
-      description: "日常の予約対応で使う画面",
-      sections: [
-        {
-          title: "管理画面を開く",
-          path: "https://admin.oukaripo.com/reserve",
-          body: [
-            "Cloudflare AccessのGoogleログイン後、予約一覧を確認できます。",
-            "現在の管理用Googleアカウントは ouka.admin@gmail.com です。"
-          ]
-        },
-        {
-          title: "予約詳細を確認する",
-          body: [
-            "予約一覧から対象の予約を開くと、お名前、予約日時、予約枠、連絡先、予約内容、二輪車情報、備考、予約状態などを確認できます。"
-          ]
-        },
-        {
-          title: "予約を確定する",
-          body: [
-            "内容を確認後、予約詳細から確定操作を行います。",
-            "予約確定時には、設定されているメールまたはLINEが送信されます。"
-          ]
-        },
-        {
-          title: "管理画面からキャンセルする",
-          body: [
-            "管理者はオンラインキャンセル期限に関係なく、予約詳細からキャンセルできます。"
-          ]
-        },
-        {
-          title: "前日確認",
-          body: [
-            "前日確認は詳細管理からON / OFFと送信時刻を変更できます。",
-            "必要な場合は管理画面から再送できます。"
-          ]
-        }
-      ]
-    },
-    {
-      id: "detail",
-      icon: "✦",
-      title: "詳細管理",
-      description: "予約ルール・文章・見た目を変更する画面",
-      sections: [
-        {
-          title: "詳細管理を開く",
-          path: "https://admin.oukaripo.com/reserve/detail",
-          body: [
-            "予約受付ルール、サイトデザイン、サイト内容、FAQ、メール、LINE、SEO、画像、二輪車などを変更できます。"
-          ]
-        },
-        {
-          title: "予約受付ルール",
-          body: [
-            "9:00枠のオンライン締切、11:00以降の締切、姫予約限定締切、電話予約表示への切り替え、当日受付、2枠予約、前日確認、オンラインキャンセルなどを設定できます。"
-          ]
-        },
-        {
-          title: "キャンセル設定",
-          body: [
-            "オンラインキャンセル ON / OFF、何日前まで可能か、締切時刻、期限後の案内文、期限後の連絡先、枠の自動解放、お客様への完了メール、管理者通知を設定できます。",
-            "初期設定は3日前23:59です。"
-          ]
-        }
-      ]
-    },
-    {
-      id: "mail",
-      icon: "✉",
-      title: "メール",
-      description: "TEST / 本番切替とテンプレート編集",
-      sections: [
-        {
-          title: "メール送信環境",
-          body: [
-            "メール送信環境は TEST と PRODUCTION の2種類です。",
-            "TEST：送信元・管理者通知先ともに ouka.admin@gmail.com",
-            "PRODUCTION：送信元・管理者通知先ともに ookaripo.reserve@gmail.com",
-            "予約データやテンプレートは共通で、送信に使うGASだけ切り替わります。"
-          ]
-        },
-        {
-          title: "TESTモードを使う",
-          body: [
-            "納品前の動作確認では詳細管理からTESTへ切り替えます。",
-            "確認完了後はPRODUCTIONへ戻します。"
-          ]
-        },
-        {
-          title: "メール送信テスト",
-          body: [
-            "詳細管理から、予約受付、予約確定、キャンセル、前日確認、管理者通知などをテスト送信できます。",
-            "実際の予約を作らずに文章や送信状態を確認できます。"
-          ]
-        },
-        {
-          title: "メールテンプレートを編集する",
-          body: [
-            "各テンプレートには『何のメールか』『いつ送るか』『誰に送るか』『自動入力される情報』『編集できる文章』が表示されます。",
-            "文章は詳細管理から変更できます。"
-          ]
-        }
-      ]
-    },
-    {
-      id: "line",
-      icon: "L",
-      title: "LINE",
-      description: "予約連携・お客様送信・管理者通知",
-      sections: [
-        {
-          title: "LINE設定",
-          body: [
-            "詳細管理 → LINE設定 から設定します。",
-            "LINE予約連携、お客様へのLINE送信、管理者LINE通知をそれぞれON / OFFできます。",
-            "Channel ID、Channel Secret、Channel Access Token、Webhook、接続確認を設定できます。"
-          ]
-        },
-        {
-          title: "LINEが未設定の場合",
-          body: [
-            "LINE予約連携がOFFの場合、公開予約フォームにLINEの選択肢は表示されません。"
-          ]
-        },
-        {
-          title: "LINEテンプレート",
-          body: [
-            "予約受付、予約確定、キャンセル、前日確認、管理者通知などの文章を編集できます。",
-            "各テンプレートからテスト送信もできます。"
-          ]
-        }
-      ]
-    },
-    {
-      id: "design",
-      icon: "❀",
-      title: "サイトの見た目・文章",
-      description: "色・画像・FAQ・サービス説明を編集",
-      sections: [
-        {
-          title: "サイトデザイン",
-          body: [
-            "詳細管理 → サイトデザイン から、ページ背景色、サブ背景色、カード色、メインカラー、アクセントカラー、文字色、枠線色、リンク色、ボタン色、入力欄、カレンダー、ステータス色などを変更できます。",
-            "カラーピッカーとHEX入力に対応しています。"
-          ]
-        },
-        {
-          title: "半透明カード",
-          body: [
-            "背景色、透明度、枠線色、枠線透明度、ぼかしを変更できます。"
-          ]
-        },
-        {
-          title: "背景画像",
-          body: [
-            "画像追加、複数保存、使用画像選択、削除、ON / OFF、プレビュー、表示方式変更ができます。",
-            "表示方式は『繰り返して表示』『画面いっぱいに表示』『元の比率を保って表示』から選べます。"
-          ]
-        },
-        {
-          title: "トップバナー",
-          body: [
-            "画像追加、複数保存、使用画像選択、削除、表示 / 非表示、プレビューができます。",
-            "スマートフォンとPCで見やすいサイズに自動調整されます。"
-          ]
-        },
-        {
-          title: "追加バナー",
-          body: [
-            "管理用タイトル、画像、リンクURL、リンクON / OFF、新規タブON / OFF、表示ON / OFF、表示位置、並び順を設定できます。"
-          ]
-        },
-        {
-          title: "favicon / PWAアイコン",
-          body: [
-            "画像追加、削除、選択、favicon変更、PWAアイコン変更、プレビューができます。"
-          ]
-        },
-        {
-          title: "桜香と過ごす110分",
-          body: [
-            "公開サイトの『110分の過ごし方を見る』を押すと①〜⑩の流れが表示されます。",
-            "最後のメッセージは折り畳まず、常に表示されます。"
-          ]
-        },
-        {
-          title: "サービス説明を編集する",
-          body: [
-            "詳細管理 → サイト内容 → 桜香紹介・110分の過ごし方 から編集します。",
-            "キャッチコピー、紹介文、タイトル、導入文、①〜⑩のタイトルと本文、補足文、最後のメッセージ、表示ON / OFF、並び順を変更できます。",
-            "文章変更だけなら再デプロイは不要です。"
-          ]
-        },
-        {
-          title: "よくあるご質問",
-          body: [
-            "FAQの見出し、質問、回答それぞれで文字サイズ、文字色、太字などを変更できます。",
-            "質問背景色・透明度、回答の行間・リンク色も変更でき、回答の一部分だけ装飾することもできます。"
-          ]
-        },
-        {
-          title: "フッター",
-          body: [
-            "公開サイト最下部には『桜香』『李白公式プロフィール』『© 桜香 All Rights Reserved.』『当サイトに掲載されている画像・文章等の保存、転載、複製、二次利用を禁止します。』と表示されます。"
-          ]
-        }
-      ]
-    },
-    {
-      id: "seo",
-      icon: "⌕",
-      title: "SEO・SNS表示",
-      description: "Google検索・LINEやSNSでURLを共有した時の表示",
-      sections: [
-        {
-          title: "SEO / SNS表示設定",
-          body: [
-            "詳細管理 → SEO / SNS表示設定 から、Google検索タイトル、Google検索説明文、OGPタイトル、OGP説明文、OGP画像、canonical、検索エンジン公開ON / OFFを変更できます。"
-          ]
-        },
-        {
-          title: "初期の検索タイトル",
-          body: ["李白 桜香 姫予約サイト｜千葉・栄町"]
-        },
-        {
-          title: "初期のGoogle検索説明",
-          body: ["千葉・栄町 李白 桜香の姫予約サイトです。最新の出勤予定・空き状況をご確認いただき、そのままオンラインでご予約いただけます。桜香と過ごす特別な110分をご案内いたします。"]
-        },
-        {
-          title: "初期のSNS共有説明",
-          body: ["李白 桜香の姫予約サイト。最新の出勤予定・空き状況の確認からオンライン予約まで。桜香と過ごす特別な110分をご案内いたします。"]
-        }
-      ]
-    },
-    {
-      id: "shift",
-      icon: "▦",
-      title: "シフト一覧画像",
-      description: "1080×1080のシフト画像を作成",
-      sections: [
-        {
-          title: "シフト一覧画像生成",
-          body: [
-            "予約サイトから出勤情報を読み込み、1080×1080のシフト一覧画像を作成できます。",
-            "画像用シフト追加、背景画像、カレンダー、文字、図形、配置調整、テンプレート保存に対応しています。"
-          ]
-        },
-        {
-          title: "背景画像を編集する",
-          body: [
-            "背景画像の追加、保存、選択、削除、再読み込みができます。",
-            "拡大率、左右位置、上下位置などを調整できます。"
-          ]
-        },
-        {
-          title: "編集テンプレート",
-          body: [
-            "現在の編集状態をテンプレートとして保存できます。",
-            "名前を付けて保存、読み込み、上書き、削除ができます。"
-          ]
-        }
-      ]
-    },
-    {
-      id: "system",
-      icon: "⚙",
-      title: "システム管理・更新",
-      description: "バックアップ・DB更新・デプロイ",
-      sections: [
-        {
-          title: "更新前にDBをバックアップ",
-          command: "10_BACKUP_DB.cmd",
-          body: ["システム更新前はD1バックアップを取ります。"]
-        },
-        {
-          title: "DBを更新する",
-          command: "06_UPDATE_DB.cmd",
-          body: ["DB更新が必要なバージョンでは実行します。既存予約データを維持したまま必要な設定やDB構造を更新します。"]
-        },
-        {
-          title: "ローカル検査",
-          command: "08_LOCAL_CHECK.cmd",
-          body: ["デプロイ前に実行します。正常なら『OUKA package verification: OK』と表示されます。"]
-        },
-        {
-          title: "全体デプロイ",
-          command: "07_DEPLOY_ALL.cmd",
-          body: ["PUBLIC → ADMIN → CRON の順にデプロイされます。"]
-        },
-        {
-          title: "Cloudflare構成",
-          body: [
-            "公開サイト：oukaripo.com",
-            "管理サイト：admin.oukaripo.com",
-            "管理サイトと管理用APIはCloudflare Accessで保護されています。"
-          ]
-        },
-        {
-          title: "メール送信経路",
-          body: [
-            "Cloudflare Worker → Google Apps Script → Gmail の経路で送信されます。",
-            "TEST：ouka.admin@gmail.com",
-            "PRODUCTION：ookaripo.reserve@gmail.com"
-          ]
-        }
-      ]
-    }
-  ]
-};
+window.MANUAL_DATA = [
+  {
+    id:'start', kicker:'BASIC', title:'最初に確認すること', intro:'予約サイト・管理画面・詳細管理の使い分けと、普段の運用で使う入口です。',
+    items:[
+      {title:'3つの画面の使い分け', body:`
+        <div class="table-wrap"><table><thead><tr><th>画面</th><th>URL</th><th>主な用途</th></tr></thead><tbody>
+        <tr><td>公開サイト</td><td><a href="https://oukaripo.com/reserve" target="_blank" rel="noopener">oukaripo.com/reserve</a></td><td>お客さんが空き状況を確認して予約する画面</td></tr>
+        <tr><td>管理画面</td><td><a href="https://admin.oukaripo.com/reserve" target="_blank" rel="noopener">admin.oukaripo.com/reserve</a></td><td>予約確認・予約対応など、日常的な予約管理</td></tr>
+        <tr><td>詳細管理</td><td><a href="https://admin.oukaripo.com/reserve/detail" target="_blank" rel="noopener">admin.oukaripo.com/reserve/detail</a></td><td>通知・サイト内容・テンプレート・デザインなどの設定</td></tr>
+        </tbody></table></div>
+        <p class="note">管理画面と詳細管理はCloudflare Accessで保護されています。</p>`},
+      {title:'管理画面へログインする', body:`
+        <p>管理画面または詳細管理へアクセスすると、Cloudflare Accessの認証画面が表示されます。許可されているGoogleアカウントで認証してください。</p>
+        <p>テスト期間中は、次の2アカウントを許可する運用です。</p>
+        <div class="codebox"><pre>ouka.admin@gmail.com\nookaripo.reserve@gmail.com</pre></div>
+        <p>正式運用後にテスト用アカウントを外す場合は、Cloudflare Access側とWorker側の許可設定の両方を変更します。</p>`}
+    ]
+  },
+  {
+    id:'reservation', kicker:'DAILY', title:'予約の確認・対応', intro:'新しい予約が入った後に使う基本操作です。',
+    items:[
+      {title:'新しい予約を確認する', body:`
+        <ol><li>管理画面を開きます。</li><li>予約一覧から対象の予約を開きます。</li><li>予約日時・枠数・お名前・連絡方法などを確認します。</li><li>内容を確認して、予約確定など必要な操作を行います。</li></ol>
+        <p class="note">新規予約通知をONにしている場合は、設定したメールまたはLINEにも管理者通知が届きます。</p>`},
+      {title:'予約を確定する', body:`
+        <p>予約内容を確認したうえで「予約確定」の操作を行います。お客さんには、現在設定されている予約確定テンプレートの内容が送信されます。</p>
+        <p>管理者への送信控えをONにしている場合、実際にお客さんへ送った内容の控えも管理者へ届きます。</p>`},
+      {title:'前日確認を送る', body:`
+        <p>前日確認の対象予約に対して送信します。管理者通知設定で「前日確認を送ったとき」の控えをONにしている場合、メールまたはLINEにも控えが届きます。</p>`},
+      {title:'管理画面から手動メッセージを送る', body:`
+        <p>予約詳細から、お客さんへ個別のメッセージを送信できます。送信控えをONにしていると、送った本文を管理者側でも確認できます。</p>`},
+      {title:'オンラインキャンセル', body:`
+        <p>予約には専用のキャンセルURLを使用するオンラインキャンセル機能があります。キャンセルが成立すると対象枠が解放されます。</p>
+        <p>初期のオンラインキャンセル期限は<strong>予約日の3日前23:59</strong>です。キャンセル通知をONにしている場合、管理者へ通知されます。</p>`}
+    ]
+  },
+  {
+    id:'schedule', kicker:'SCHEDULE', title:'出勤・枠の管理', intro:'公開カレンダーへ出す予約枠を管理します。',
+    items:[
+      {title:'枠を設定する', body:`
+        <p>管理画面の枠管理から、公開する日付と時間帯を設定します。通常枠は予約可能な時間を過ぎると電話案内表示を経て受付終了となり、姫予約限定枠は締切後に受付終了になります。</p>
+        <p>設定後は公開サイトで表示を確認してください。</p>`},
+      {title:'公開サイトの受付表示', body:`
+        <div class="table-wrap"><table><thead><tr><th>区分</th><th>締切後の流れ</th></tr></thead><tbody>
+        <tr><td>通常枠</td><td>予約可能 → 📞 → ×</td></tr>
+        <tr><td>姫予約限定</td><td>予約可能 → ×</td></tr>
+        </tbody></table></div>
+        <p class="note">予約送信時にもサーバー側で締切が再判定されます。</p>`}
+    ]
+  },
+  {
+    id:'notifications', kicker:'v1.2.5', title:'管理者通知設定', intro:'v1.2.5では、管理者が受け取る通知をメール・LINEごとに細かく切り替えられます。',
+    items:[
+      {title:'親スイッチと個別スイッチの考え方', body:`
+        <p>詳細管理の「管理者通知設定」には、メールとLINEそれぞれに<strong>全体ON/OFF</strong>があります。</p>
+        <ul><li><strong>管理者メール通知 全体ON/OFF</strong></li><li><strong>管理者LINE通知 全体ON/OFF</strong></li></ul>
+        <p class="important">親スイッチがOFFの場合、下の個別項目をONにしていてもその通知方法では送信されません。</p>`},
+      {title:'通知ごとのON/OFF', body:`
+        <div class="table-wrap"><table><thead><tr><th>通知内容</th><th>メール</th><th>LINE</th></tr></thead><tbody>
+        <tr><td>新しい予約が入ったとき</td><td>ON/OFF</td><td>ON/OFF</td></tr>
+        <tr><td>予約を確定したとき</td><td>ON/OFF</td><td>ON/OFF</td></tr>
+        <tr><td>前日確認を送ったとき</td><td>ON/OFF</td><td>ON/OFF</td></tr>
+        <tr><td>管理画面からお客さんへメッセージを送ったときの控え</td><td>ON/OFF</td><td>ON/OFF</td></tr>
+        <tr><td>キャンセルが発生したとき</td><td>ON/OFF</td><td>ON/OFF</td></tr>
+        <tr><td>送信エラー等の重要エラー</td><td>ON/OFF</td><td>ON/OFF</td></tr>
+        </tbody></table></div>`},
+      {title:'送信控えとは', body:`
+        <p>予約確定・前日確認・手動メッセージ・キャンセル関連など、管理画面からお客さんへ送信した内容を管理者自身にも届ける機能です。</p>
+        <p>LINEの送信控えでも、<strong>お客さんへ実際に送った内容が分かる形</strong>で通知されます。</p>
+        <p class="tip">「送ったはずだけど、何を送ったか確認したい」というときに使いやすいので、普段は控え通知をONにしておくと管理しやすいです。</p>`},
+      {title:'LINEが未設定の場合', body:`
+        <p>LINE公式アカウント側のAPI設定がまだ終わっていない場合は、管理者LINE通知をOFFのまま使用できます。メール通知だけで予約システムを運用できます。</p>`}
+    ]
+  },
+  {
+    id:'line', kicker:'LINE', title:'LINE連携を設定する', intro:'LINE公式アカウントはすでに持っているけれど、LINE DevelopersやAPIは初めて、という前提で説明します。',
+    items:[
+      {title:'最初に知っておくこと：LINE LoginとMessaging APIは別', body:`
+        <p>この予約システムでは、LINEまわりで役割の違う設定値を使います。</p>
+        <div class="table-wrap"><table><thead><tr><th>必要な値</th><th>役割</th><th>取得場所</th></tr></thead><tbody>
+        <tr><td><strong>LINE Login Channel ID</strong></td><td>お客さんが予約サイトとLINEを連携するときの認証</td><td>LINE Developers → LINE Loginチャネル → チャネル基本設定</td></tr>
+        <tr><td><strong>LINE Login Channel Secret</strong></td><td>LINE Loginの認証処理</td><td>LINE Developers → LINE Loginチャネル → チャネル基本設定</td></tr>
+        <tr><td><strong>Messaging API Channel Access Token</strong></td><td>LINE公式アカウントからメッセージを送るための認証</td><td>LINE Developers → Messaging APIチャネル → Messaging API設定</td></tr>
+        </tbody></table></div>
+        <p class="important">LINE LoginチャネルとMessaging APIチャネルは別です。Channel IDとChannel SecretをMessaging APIのアクセストークン代わりに使うものではありません。</p>`},
+      {title:'STEP 1：LINE Official Account ManagerでMessaging APIを有効にする', body:`
+        <p>すでに持っている桜香のLINE公式アカウントを使います。新しく公式アカウントを作り直す必要はありません。</p>
+        <ol>
+          <li><a href="https://manager.line.biz/" target="_blank" rel="noopener">LINE Official Account Manager</a>へログインします。</li>
+          <li>桜香のLINE公式アカウントを選びます。</li>
+          <li>画面右上付近の「設定」を開きます。</li>
+          <li>「Messaging API」を開きます。</li>
+          <li>Messaging APIをまだ利用していなければ「Messaging APIを利用する」を押します。</li>
+          <li>プロバイダーの選択画面が出たら、今後LINE Loginでも使うプロバイダーを選びます。</li>
+        </ol>
+        <p class="note">現在はLINE Developers ConsoleからMessaging APIチャネルを直接新規作成する方式ではありません。既存のLINE公式アカウントでMessaging APIを有効にすると、対応するMessaging APIチャネルが作成されます。</p>
+        <p class="important">プロバイダーは後から気軽に変える前提にしない方がいいです。LINE Loginチャネルも同じプロバイダーにまとめてください。</p>
+        <p><a href="https://developers.line.biz/ja/docs/messaging-api/getting-started/" target="_blank" rel="noopener">LINE公式：Messaging APIを始めよう</a></p>`},
+      {title:'STEP 2：Messaging API Channel Access Tokenを取得する', body:`
+        <ol>
+          <li><a href="https://developers.line.biz/console/" target="_blank" rel="noopener">LINE Developers Console</a>へログインします。</li>
+          <li>STEP 1で選んだプロバイダーを開きます。</li>
+          <li>桜香のLINE公式アカウントに対応する<strong>Messaging APIチャネル</strong>を開きます。</li>
+          <li>「Messaging API設定」タブを開きます。</li>
+          <li>「チャネルアクセストークン」の項目までスクロールします。</li>
+          <li>この予約システムへ固定値として登録する場合は、画面から発行できる<strong>長期のチャネルアクセストークン</strong>を使用します。</li>
+          <li>発行された文字列をコピーして、安全な場所に一時保存します。</li>
+        </ol>
+        <p class="important">長期チャネルアクセストークンを再発行すると、それまで使っていた長期トークンは無効になります。再発行した場合は予約システム側の設定も入れ替えてください。</p>
+        <p><a href="https://developers.line.biz/ja/docs/basics/channel-access-token/" target="_blank" rel="noopener">LINE公式：チャネルアクセストークン</a></p>`},
+      {title:'STEP 3：LINE Loginチャネルを作る', body:`
+        <ol>
+          <li>LINE Developers Consoleで、Messaging APIチャネルと<strong>同じプロバイダー</strong>を開きます。</li>
+          <li>新しいチャネルを作成し、チャネルの種類で<strong>LINE Login</strong>を選びます。</li>
+          <li>チャネル名・説明など必要項目を入力します。</li>
+          <li>アプリタイプは予約サイトで使うため<strong>ウェブアプリ</strong>を選びます。</li>
+          <li>作成したLINE Loginチャネルを開きます。</li>
+        </ol>
+        <p class="note">LINE公式アカウントをLINE Loginチャネルへリンクする場合も、同じプロバイダー内の公式アカウントだけが対象です。</p>
+        <p><a href="https://developers.line.biz/ja/docs/line-login/getting-started/" target="_blank" rel="noopener">LINE公式：LINEログインを始めよう</a></p>`},
+      {title:'STEP 4：LINE Login Channel IDを取得する', body:`
+        <ol><li>作成したLINE Loginチャネルを開きます。</li><li>「チャネル基本設定」タブを開きます。</li><li><strong>チャネルID（Channel ID）</strong>を探します。</li><li>表示されている数字をコピーします。</li></ol>
+        <p>これが<strong>LINE Login Channel ID</strong>です。</p>`},
+      {title:'STEP 5：LINE Login Channel Secretを取得する', body:`
+        <ol><li>同じLINE Loginチャネルの「チャネル基本設定」を開きます。</li><li><strong>チャネルシークレット（Channel secret）</strong>を探します。</li><li>表示または発行された文字列をコピーします。</li></ol>
+        <p>これが<strong>LINE Login Channel Secret</strong>です。</p>
+        <p class="important">Channel Secretはパスワードと同じ扱いです。公開ページ・スクリーンショット・GitHubなどへ載せないでください。</p>`},
+      {title:'STEP 6：LINE LoginのコールバックURLを設定する', body:`
+        <ol><li>LINE Loginチャネルの「LINEログイン設定」タブを開きます。</li><li>「コールバックURL」に、桜香予約システムで指定されているLINE Login用コールバックURLを登録します。</li><li>保存します。</li></ol>
+        <p class="important">コールバックURLは1文字でも違うとログインできません。ここは予約システム側で使用しているURLをそのまま登録してください。</p>`},
+      {title:'STEP 7：本番利用できる状態にする', body:`
+        <p>LINE Loginチャネルを作成した直後は、開発者やテスターだけが利用できる状態になっている場合があります。お客さんが利用する前に、LINE Developers Consoleでチャネルの公開状態を確認してください。</p>
+        <p class="note">テスト中は自分のアカウントでLINE連携を確認し、本番公開後に実際のお客さんが利用できる状態になっているか確認します。</p>`},
+      {title:'最終的に用意する3つの値', body:`
+        <div class="checks"><span>□ LINE Login Channel ID</span><span>□ LINE Login Channel Secret</span><span>□ Messaging API Channel Access Token</span></div>
+        <p>この3つが揃えば、LINE LoginとMessaging APIの基本的な認証情報が揃います。</p>
+        <p class="important">予約システムへ登録するときは、各値をそれぞれ対応する設定へ入れます。Channel SecretやAccess Tokenを公開HTMLへ直接書かないでください。</p>`},
+      {title:'LINE連携後の確認', body:`
+        <ol><li>公開予約サイトからLINE連携を試します。</li><li>LINE連携が完了できることを確認します。</li><li>テスト予約を入れます。</li><li>管理者LINE通知をONにし、新規予約通知が届くことを確認します。</li><li>予約確定や手動メッセージを送り、送信控えが届くことを確認します。</li></ol>
+        <p class="tip">LINE側の設定が終わるまでは、管理者LINE通知をOFFにしたままメールだけでテストできます。</p>`}
+    ]
+  },
+  {
+    id:'content', kicker:'SITE', title:'サイト内容・自己紹介の編集', intro:'公開サイトの文章を再デプロイせず変更できます。',
+    items:[
+      {title:'自己紹介「桜香について」を編集する', body:`
+        <p>詳細管理の「サイト内容」から自己紹介を編集します。</p>
+        <ul><li>表示ON/OFF</li><li>見出し</li><li>自己紹介本文</li><li>小見出し</li><li>文字揃え</li><li>プレビュー</li></ul>
+        <p>保存した文章はD1に保存され、再デプロイなしで公開サイトへ反映されます。</p>
+        <p class="note">公開側では、カレンダー周辺から「桜香と過ごす110分」の前あたりに、現在の桜テーマに合わせたカードとして表示されます。</p>`},
+      {title:'トップ紹介文を編集する', body:`
+        <p>詳細管理のトップ紹介文は、公開サイトの<strong>「桜香と過ごす110分」の上に表示される文章</strong>です。</p>
+        <p>現在表示しているトップ紹介文を変更したいときは、この項目を編集して保存します。</p>`},
+      {title:'「桜香と過ごす110分」の表示', body:`
+        <p>①〜⑩の内容は折り畳み式で表示されます。</p>
+        <p>最後のメッセージ「大切なお時間を、誠実に、甘やかにお迎えいたします。お逢いできる日を心よりお待ちしております。」は折り畳まず常時表示されます。</p>`},
+      {title:'FAQを編集する', body:`
+        <p>詳細管理からFAQの内容やデザインを編集できます。変更後はプレビューを確認し、保存後に公開サイトでも表示を確認します。</p>`}
+    ]
+  },
+  {
+    id:'templates', kicker:'MESSAGE', title:'メール・LINEテンプレート', intro:'予約受付・確定・前日確認・キャンセル・管理者通知など、現行運用で使う文章を管理します。',
+    items:[
+      {title:'現在使用する主なテンプレート', body:`
+        <ul><li>予約受付</li><li>予約確定</li><li>前日確認</li><li>キャンセル完了</li><li>管理者新規予約通知</li><li>管理者キャンセル通知</li><li>管理画面からの送信控え</li></ul>
+        <p>文章を編集した場合は、差し込み項目が正しく残っているか確認してから保存してください。</p>`},
+      {title:'送信控えで確認できる内容', body:`
+        <p>送信控えでは、どの操作で、いつ、どの予約に対して、どんな内容をお客さんへ送ったか確認できるようにします。メールとLINEのどちらを受け取るかは「管理者通知設定」で切り替えます。</p>`}
+    ]
+  },
+  {
+    id:'environment', kicker:'MAIL', title:'TEST / PRODUCTION', intro:'正式納品前のテストと、本番運用でメール送信先・送信元を切り替えます。',
+    items:[
+      {title:'TESTモード', body:`
+        <div class="codebox"><pre>お客さん宛メール送信元：ouka.admin@gmail.com\n管理者通知先：ouka.admin@gmail.com</pre></div>
+        <p>桜香ちゃんへ正式納品する前の動作確認で使用します。</p>`},
+      {title:'PRODUCTIONモード', body:`
+        <div class="codebox"><pre>お客さん宛メール送信元：ookaripo.reserve@gmail.com\n管理者通知先：ookaripo.reserve@gmail.com</pre></div>
+        <p>本番運用で使用します。</p>`},
+      {title:'切り替えても共通のもの', body:`
+        <p>TEST / PRODUCTIONを切り替えても、次のデータは共通です。</p>
+        <ul><li>予約データ</li><li>サイト内容</li><li>テンプレート</li><li>D1</li><li>R2</li></ul>
+        <p>環境に応じて切り替わるのは、主にGASとメールの送信元・管理者通知先です。</p>`}
+    ]
+  },
+  {
+    id:'design', kicker:'DESIGN', title:'画像・デザイン管理', intro:'公開サイトの見た目に関する管理です。',
+    items:[
+      {title:'画像ライブラリ', body:`
+        <p>背景・バナー・faviconなど、公開サイトで使用する画像を画像ライブラリから管理します。変更前にプレビューを確認してから保存してください。</p>`},
+      {title:'トップバナー', body:`
+        <p>PCではトップバナーが大きくなりすぎないよう調整された現行デザインを使用します。画像を差し替える場合も、現在の表示比率を前提に作成してください。</p>`},
+      {title:'半透明カード', body:`
+        <p>公開サイトのカードは、詳細管理から色や透明度を調整できる構成です。背景との読みやすさをプレビューで確認してから保存します。</p>`}
+    ]
+  },
+  {
+    id:'shiftimage', kicker:'IMAGE TOOL', title:'シフト一覧画像生成', intro:'告知用のシフト画像を作る機能です。',
+    items:[
+      {title:'シフト一覧画像を作る', body:`
+        <ol><li>管理側の画像生成機能を開きます。</li><li>表示したい期間・枠を確認します。</li><li>背景や必要な表示を調整します。</li><li>プレビューを確認して画像を保存します。</li></ol>
+        <p>公開カレンダーの予約情報をもとに、告知用画像を作成できます。</p>`}
+    ]
+  },
+  {
+    id:'check', kicker:'CHECK', title:'設定変更後の確認', intro:'通知やサイト内容を変更したときの確認ポイントです。',
+    items:[
+      {title:'通知設定を変えたとき', body:`
+        <div class="checks"><span>□ 親スイッチがONか</span><span>□ 必要な個別通知がONか</span><span>□ メール通知が届くか</span><span>□ LINEを使う場合はLINE通知が届くか</span><span>□ 送信控えに実際の送信内容が表示されるか</span></div>`},
+      {title:'サイト文章を変えたとき', body:`
+        <div class="checks"><span>□ 詳細管理で保存できたか</span><span>□ 公開サイトへ反映されたか</span><span>□ PC表示で崩れていないか</span><span>□ スマホ表示で読みづらくないか</span></div>`},
+      {title:'LINEを設定したとき', body:`
+        <div class="checks"><span>□ LINE Login Channel IDを取得した</span><span>□ LINE Login Channel Secretを取得した</span><span>□ Messaging API Channel Access Tokenを取得した</span><span>□ LINE LoginのコールバックURLを登録した</span><span>□ LINE Loginが利用できる公開状態になっている</span><span>□ テスト予約でLINE通知を確認した</span></div>`}
+    ]
+  }
+];
