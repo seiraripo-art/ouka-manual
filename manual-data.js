@@ -125,9 +125,72 @@ window.MANUAL_DATA = [
       {title:'STEP 4：予約システムへ保存して確認する', body:`
         <ol><li>詳細管理 →「LINE設定」を開きます。</li><li>LINE Login Channel ID / Secret、Messaging API Channel Access Token / Secretを入力します。</li><li>利用したい「LINE予約連携」「お客さんへのLINE送信」「管理者LINE通知」をONにします。</li><li>保存後、「接続テスト」で確認します。</li></ol>
         <p class="note">秘密情報は保存後に画面へそのまま再表示されません。「設定済み」の表示で確認します。</p>`},
-      {title:'店舗LINE候補を取得するためのWebhook', body:`
-        <p>店舗LINEの「最近メッセージを送ったLINEアカウント」を使う場合は、詳細管理の「店舗LINE通知」に表示される<strong>Webhook URL</strong>をLINE DevelopersのMessaging API設定へ登録し、Webhookを有効にします。</p>
-        <p>設定後、お店のLINEから桜香の公式LINEへメッセージを送ると、管理画面の候補に表示できるようになります。</p>`}
+      {title:'店舗LINE候補を取得するためのWebhook（詳しい手順）', body:`
+        <p>この設定は、<strong>お店の通常LINEから桜香のLINE公式アカウントへ送られたメッセージを予約システムが受け取り、そのLINEを店舗通知先の候補として表示するため</strong>に使います。</p>
+        <p class="important">使うのは<strong>LINE Loginチャネルではなく、桜香のLINE公式アカウントに紐づいているMessaging APIチャネル</strong>です。</p>
+
+        <h4>設定前に確認すること</h4>
+        <ol>
+          <li>詳細管理 → <strong>「LINE設定」</strong>を開きます。</li>
+          <li><strong>Messaging API Channel Access Token</strong>が設定済みになっていることを確認します。</li>
+          <li><strong>Messaging API Channel Secret</strong>が設定済みになっていることを確認します。<br><small>※ LINE Login Channel Secretとは別物です。</small></li>
+          <li>未設定の場合は、LINE DevelopersのMessaging APIチャネルから取得して保存してから先へ進みます。</li>
+        </ol>
+
+        <h4>STEP 1：予約システム側のWebhook URLをコピーする</h4>
+        <ol>
+          <li>詳細管理 → <strong>「店舗LINE通知」</strong>を開きます。</li>
+          <li><strong>「Webhook URL」</strong>欄に表示されているURLをコピーします。</li>
+          <li>現在の通常URLは <code>https://oukaripo.com/line/webhook</code> です。<br><small>※ 将来URLが変わる可能性があるため、手入力せず管理画面に表示されているURLをコピーするのがおすすめです。</small></li>
+        </ol>
+
+        <h4>STEP 2：LINE DevelopersでMessaging APIチャネルを開く</h4>
+        <ol>
+          <li><a href="https://developers.line.biz/console/" target="_blank" rel="noopener">LINE Developers Console</a>へログインします。</li>
+          <li>桜香のLINE公式アカウントで使っている<strong>プロバイダー</strong>を開きます。</li>
+          <li>チャネル一覧から、桜香のLINE公式アカウントに紐づいた<strong>Messaging API</strong>チャネルを開きます。</li>
+          <li>上部メニューの<strong>「Messaging API設定」</strong>を開きます。</li>
+        </ol>
+        <p class="note">「LINE Login」と書かれたチャネルではありません。LINE公式アカウント名が表示されているMessaging APIチャネルを選びます。</p>
+
+        <h4>STEP 3：Webhook URLを登録して検証する</h4>
+        <ol>
+          <li>「Messaging API設定」の中にある<strong>Webhook設定</strong>までスクロールします。</li>
+          <li><strong>Webhook URL</strong>に、STEP 1でコピーしたURLを貼り付けます。</li>
+          <li>「更新」などの保存操作を行います。</li>
+          <li><strong>「検証」</strong>を押します。</li>
+          <li>成功の表示が出れば、LINEから予約システムへWebhookを送れる状態です。</li>
+          <li><strong>「Webhookの利用」</strong>をONにします。</li>
+        </ol>
+        <p class="note">LINE Official Account Manager側にWebhookのON/OFFが表示される場合もONにします。LINE Developers側とOfficial Account Manager側のWebhook設定は同期します。</p>
+
+        <h4>STEP 4：お店のLINEからメッセージを1通送る</h4>
+        <ol>
+          <li>店舗スタッフが普段使っているLINEアカウントで、桜香のLINE公式アカウントを友だち追加します。</li>
+          <li><strong>店舗スタッフの個人LINE → 桜香のLINE公式アカウント</strong>へ、1対1のトークでメッセージを1通送ります。</li>
+          <li>内容は「テスト」「店舗です」など何でも構いません。</li>
+        </ol>
+        <p class="important">グループトークやオープンチャットではなく、<strong>通知先にしたい本人の通常LINEから公式LINEへ直接</strong>送ってください。</p>
+
+        <h4>STEP 5：管理画面で候補を確認して登録する</h4>
+        <ol>
+          <li>詳細管理 → <strong>「店舗LINE通知」</strong>へ戻ります。</li>
+          <li><strong>「最近のLINEを更新」</strong>を押します。</li>
+          <li>「最近メッセージを送ったLINEアカウント」に、先ほど送信したLINEの表示名・User ID・日時が表示されます。</li>
+          <li>該当するLINEの<strong>「このLINEを店舗通知先に設定」</strong>を押します。</li>
+          <li><strong>「直前予約を店舗LINEへ通知する」</strong>をONにして、設定を保存します。</li>
+          <li>最後に<strong>「テスト送信」</strong>を押し、お店のLINEへメッセージが届くことを確認します。</li>
+        </ol>
+
+        <h4>候補が表示されない場合</h4>
+        <div class="table-wrap"><table><thead><tr><th>確認するところ</th><th>対処</th></tr></thead><tbody>
+          <tr><td>Webhookの検証が失敗する</td><td>管理画面のWebhook URLをコピーし直し、詳細管理 → LINE設定で<strong>Messaging API Channel Secret</strong>が設定済みか確認します。</td></tr>
+          <tr><td>検証は成功するが候補が出ない</td><td>LINE Developersの<strong>「Webhookの利用」</strong>がONか確認し、店舗の通常LINEから公式LINEへもう一度1対1でメッセージを送ります。</td></tr>
+          <tr><td>「Webhook署名：未設定」と出る</td><td>詳細管理 → LINE設定へ<strong>Messaging API Channel Secret</strong>を保存します。LINE Login Channel Secretではありません。</td></tr>
+          <tr><td>「Messaging API：未設定」と出る</td><td>詳細管理 → LINE設定へ<strong>Messaging API Channel Access Token</strong>を保存します。</td></tr>
+          <tr><td>候補は出るがテスト送信が届かない</td><td>通知先に設定したLINEが桜香の公式LINEを友だち追加済みで、ブロックしていないことを確認します。</td></tr>
+        </tbody></table></div>
+        <p class="note">一度通知先を登録すれば、通常は毎回Webhook設定をやり直す必要はありません。店舗LINEの通知先を変更するときだけ、同じ手順で新しいLINEからメッセージを送って登録します。</p>`}
     ]
   },
   {
